@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider          = "mysql"
+  // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
+  // Further reading:
+  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  relationMode      = "prisma"
+}
+
+model Example {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Necessary for Next auth
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token_expires_in Int?
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? // @db.Text
+  session_state            String?
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                   String                 @id @default(cuid())
+  name                 String?
+  email                String?                @unique
+  emailVerified        DateTime?
+  image                String?
+  github_id            Int?                   @unique
+  github_username      String?
+  // Relations
+  accounts             Account[]
+  sessions             Session[]
+  usersToInstallations UsersToInstallations[]
+  ScheduledRuns        ScheduledWorkflowRun[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Github stuff below
+model Installation {
+  id                        Int                    @id
+  raw_github_create_event   Json // The json data from github webhook event
+  // Relations
+  repos                     Repo[]
+  usersToInstallations      UsersToInstallations[]
+  // Fields that are derived from the raw_github_content_data
+  url                       String
+  type                      String
+  installed_on_organization Boolean
+  installed_on_login        String
+  organization_id           Int?
+  repository_selection      String?
+}
+
+model UsersToInstallations {
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  installation   Installation @relation(fields: [installationId], references: [id], onDelete: Cascade)
+  installationId Int
+
+  @@id([userId, installationId])
+  @@map("UsersOnInstallations")
+}
+
+model Repo {
+  id              Int          @id
+  raw_github_data Json? // The json data from github 
+  updatedAt       DateTime     @updatedAt
+  // Relations
+  installation    Installation @relation(fields: [installationId], references: [id], onDelete: Cascade)
+  installationId  Int
+  workflows       Workflow[]
+  // Fields that are derived from the raw_github_content_data
+  name            String
+  full_name       String
+  private         Boolean
+  owner_login     String
+  default_branch  String
+}
+
+model Workflow {
+  id                      Int                    @id
+  raw_github_data         Json // The json data from github
+  updatedAt               DateTime               @updatedAt
+  // Relations
+  repo                    Repo                   @relation(fields: [repoId], references: [id], onDelete: Cascade)
+  repoId                  Int
+  // Workflow content
+  raw_github_content_data Json? // The file content from github
+  // Fields that are derived from the raw_github_content_data
+  fileYaml                Json? // The yaml content from github
+  fileRaw                 String?                @db.Text // The raw content from github
+  inputs                  Json? // The inputs from github
+  isDispatchable          Boolean?               @default(false)
+  name                    String
+  html_url                String
+  WorkflowRun             WorkflowRun[]
+  scheduledRuns           ScheduledWorkflowRun[]
+}
+
+model WorkflowRun {
+  id              BigInt   @id
+  raw_github_data Json // The json data from github
+  updatedAt       DateTime @updatedAt
+  // Relations
+  workflow        Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  workflowId      Int
+  // Fields that are derived from the raw_github_content_data
+  status          String
+  conclusion      String?
+  head_branch     String
+  head_sha        String
+  event           String
+  created_at      DateTime
+  updated_at      DateTime
+  html_url        String
+}
+
+model ScheduledWorkflowRun {
+  id               String    @id @default(cuid())
+  workflow         Workflow? @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  workflowId       Int
+  hasBeenTriggered Boolean   @default(false)
+  runAt            DateTime
+  createdBy        User      @relation(fields: [userId], references: [id])
+  userId           String
+  inputs           Json?
+}

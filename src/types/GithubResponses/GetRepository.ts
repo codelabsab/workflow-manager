@@ -1,0 +1,119 @@
+export interface Owner {
+  id: number;
+  url: string;
+  type: string;
+  login: string;
+  node_id: string;
+  html_url: string;
+  gists_url: string;
+  repos_url: string;
+  avatar_url: string;
+  events_url: string;
+  site_admin: boolean;
+  gravatar_id: string;
+  starred_url: string;
+  followers_url: string;
+  following_url: string;
+  organizations_url: string;
+  subscriptions_url: string;
+  received_events_url: string;
+}
+
+export interface License {
+  key: string;
+  url: string;
+  name: string;
+  node_id: string;
+  spdx_id: string;
+}
+
+export interface Permissions {
+  pull: boolean;
+  push: boolean;
+  admin: boolean;
+  triage: boolean;
+  maintain: boolean;
+}
+
+export interface GetRepositoryResponse {
+  id: number;
+  url: string;
+  fork: boolean;
+  name: string;
+  size: number;
+  forks: number;
+  owner: Owner;
+  topics: string[];
+  git_url: string;
+  license: License;
+  node_id: string;
+  private: boolean;
+  ssh_url: string;
+  svn_url: string;
+  archived: boolean;
+  disabled: boolean;
+  has_wiki: boolean;
+  homepage?: unknown;
+  html_url: string;
+  keys_url: string;
+  language: string;
+  tags_url: string;
+  watchers: number;
+  blobs_url: string;
+  clone_url: string;
+  forks_url: string;
+  full_name: string;
+  has_pages: boolean;
+  hooks_url: string;
+  pulls_url: string;
+  pushed_at: Date;
+  teams_url: string;
+  trees_url: string;
+  created_at: Date;
+  events_url: string;
+  has_issues: boolean;
+  issues_url: string;
+  labels_url: string;
+  merges_url: string;
+  mirror_url?: unknown;
+  updated_at: Date;
+  visibility: string;
+  archive_url: string;
+  commits_url: string;
+  compare_url: string;
+  description: string;
+  forks_count: number;
+  is_template: boolean;
+  open_issues: number;
+  permissions: Permissions;
+  branches_url: string;
+  comments_url: string;
+  contents_url: string;
+  git_refs_url: string;
+  git_tags_url: string;
+  has_projects: boolean;
+  releases_url: string;
+  statuses_url: string;
+  allow_forking: boolean;
+  assignees_url: string;
+  downloads_url: string;
+  has_downloads: boolean;
+  languages_url: string;
+  default_branch: string;
+  milestones_url: string;
+  stargazers_url: string;
+  watchers_count: number;
+  deployments_url: string;
+  git_commits_url: string;
+  has_discussions: boolean;
+  subscribers_url: string;
+  contributors_url: string;
+  issue_events_url: string;
+  stargazers_count: number;
+  subscription_url: string;
+  collaborators_url: string;
+  issue_comment_url: string;
+  notifications_url: string;
+  open_issues_count: number;
+  web_commit_signoff_required: boolean;
+}

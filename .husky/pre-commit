@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# npm run test --watch=false
+npx lint-staged
+npm run detect-circular-imports
+npm run check-typescript
