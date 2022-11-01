@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
 import ALink from "components/ALink";
 import Divider from "components/Divider";

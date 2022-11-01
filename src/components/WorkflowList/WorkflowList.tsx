@@ -1,6 +1,6 @@
 import type { Workflow } from "@prisma/client";
 
-import WorkflowComponent from "./Workflow";
+import WorkflowComponent from "./WorkflowControls";
 
 type WorkflowListProps = {
   workflows: Workflow[];
