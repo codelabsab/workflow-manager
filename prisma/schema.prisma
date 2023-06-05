@@ -41,6 +41,7 @@ model Account {
   user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Session {
@@ -49,6 +50,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model User {
@@ -98,6 +101,8 @@ model UsersToInstallations {
   installationId Int
 
   @@id([userId, installationId])
+  @@index([userId])
+  @@index([installationId])
   @@map("UsersOnInstallations")
 }
 
@@ -115,6 +120,8 @@ model Repo {
   private         Boolean
   owner_login     String
   default_branch  String
+
+  @@index([installationId])
 }
 
 model Workflow {
@@ -135,6 +142,8 @@ model Workflow {
   html_url                String
   WorkflowRun             WorkflowRun[]
   scheduledRuns           ScheduledWorkflowRun[]
+
+  @@index([repoId])
 }
 
 model WorkflowRun {
@@ -153,6 +162,8 @@ model WorkflowRun {
   created_at      DateTime
   updated_at      DateTime
   html_url        String
+
+  @@index([workflowId])
 }
 
 model ScheduledWorkflowRun {
@@ -164,4 +175,7 @@ model ScheduledWorkflowRun {
   createdBy        User      @relation(fields: [userId], references: [id])
   userId           String
   inputs           Json?
+
+  @@index([workflowId])
+  @@index([userId])
 }
