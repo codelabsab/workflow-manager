@@ -81,6 +81,9 @@ docker-compose up -d
 # (optional but recommended) i a separate terminal
 ngrok http 3000
 
+# Create all of the tables in the database on the first run
+npx prisma db push
+
 # install all of the dependencies
 yarn install  
 # Start the local service
