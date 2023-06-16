@@ -21,9 +21,12 @@ const Index: NextPage = () => {
     "filterWithWorkflows",
     false
   );
-  const { data: repos } = trpc.github.currentUserRepos.useQuery({
-    filterWithWorkflows: filterWithWorkflows,
-  });
+  const { data: repos } = trpc.github.currentUserRepos.useQuery(
+    {
+      filterWithWorkflows: filterWithWorkflows,
+    },
+    { keepPreviousData: true }
+  );
 
   const showInstallHelper =
     !isLoading && Boolean(installationsData?.length) === false;
