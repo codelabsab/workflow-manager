@@ -8,7 +8,6 @@ import TextInput from "./Fields/TextInput";
 import type { WorkFlowInput } from "types/custom";
 import { trpc } from "utils/trpc";
 
-
 type WorkflowRunFormProps = {
   workflow: Workflow;
   onSubmitCallback: () => void;

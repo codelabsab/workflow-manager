@@ -17,15 +17,15 @@ const Workflow = ({ workflow }: WorkflowProps) => {
   const [rawFile, setRawFile] = useState("");
   const [showRunForm, setShowRunForm] = useState(false);
   const [showScheduleForm, setShowScheduleForm] = useState(false);
-  const runNowRef = useRef(null)
-  const scheduleRunRef = useRef(null)
+  const runNowRef = useRef(null);
+  const scheduleRunRef = useRef(null);
   const notShowingYamlFile = !rawFile && Boolean(workflow.fileRaw);
 
   useClickAway(runNowRef, () => {
-    setShowRunForm(false)
+    setShowRunForm(false);
   });
   useClickAway(scheduleRunRef, () => {
-    setShowScheduleForm(false)
+    setShowScheduleForm(false);
   });
 
   return (
@@ -111,7 +111,10 @@ const Workflow = ({ workflow }: WorkflowProps) => {
             ) : null}
 
             {showScheduleForm ? (
-              <div className="absolute right-28 top-6 z-10 " ref={scheduleRunRef}>
+              <div
+                className="absolute right-28 top-6 z-10 "
+                ref={scheduleRunRef}
+              >
                 <ScheduleWorkflowRunForm
                   workflow={workflow}
                   onSubmitCallback={() => setShowScheduleForm(false)}

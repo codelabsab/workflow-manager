@@ -2,7 +2,6 @@ import type { Workflow } from "@prisma/client";
 import _ from "lodash";
 import { useForm } from "react-hook-form";
 
-
 import DatetimeInput from "./Fields/DatetimeInput";
 import SelectInput from "./Fields/SelectInput";
 import TextInput from "./Fields/TextInput";

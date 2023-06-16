@@ -20,7 +20,7 @@ const InstallHelper = ({}) => {
       <span className="block text-lg font-semibold text-gray-500">
         You are not connected to GitHub!
       </span>
-      <FaGithub className="mt-5 mr-2 inline h-32 w-32 text-gray-400" />
+      <FaGithub className="mr-2 mt-5 inline h-32 w-32 text-gray-400" />
       <span className="mt-2 block text-sm font-medium text-gray-900">
         Click here to connect
       </span>
