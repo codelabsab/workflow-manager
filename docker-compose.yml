@@ -1,9 +1,8 @@
 # docker-compose file with mysql service
-version: '3'
+version: "3"
 services:
   main-mysql:
     image: mysql
-    container_name: main-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
@@ -15,7 +14,6 @@ services:
       - ./mysql/main:/var/lib/mysql
   shadow-mysql:
     image: mysql
-    container_name: shadow-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: shadow

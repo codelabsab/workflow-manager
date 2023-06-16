@@ -4,7 +4,9 @@ import { env } from "../../env/server.mjs";
 
 export const app = new App({
   appId: env.GITHUB_APP_ID,
-  privateKey: env.GITHUB_APP_PRIVATE_KEY.replace(/\\n/gm, "\n"),
+  privateKey: Buffer.from(env.GITHUB_APP_PRIVATE_KEY, "base64").toString(
+    "utf8"
+  ),
   oauth: {
     clientId: env.GITHUB_APP_CLIENT_ID,
     clientSecret: env.GITHUB_APP_CLIENT_SECRET,
