@@ -17,7 +17,7 @@ Copy the `.env-example` to `.env` and update all of the values.
 
 ## Running local development
 
-**Important**: The app needs a public address to receive incoming webhooks. You will need to either deploy it somewhere or you kan use [ngrok.io](www.ngrok.io) to create a simple reverse proxy for the incoming requests.
+**Important**: The app needs a public address to receive incoming webhooks. You will need to either deploy it somewhere or you kan use [ngrok.io](https://ngrok.io) to create a simple reverse proxy for the incoming requests.
 
 You can use a free ngrok accound but be aware that your ngrok forwarding address might/will change. A paid account that does not have this behaviour might be a better alternative for more intensive development.  
 
@@ -58,7 +58,7 @@ Copy `.env-example` to `.env` and update the values with the values from the pre
 **Important!** Note that you have to base64 encode the contents of the `Private Key` before inserting it in to the `.env` to the `GITHUB_APP_PRIVATE_KEY`.
 
 ```bash
-cat <path to the generated private key file>.pem | base64
+cat <path to the generated private key file>.pem | base64 | pbcopy
 ```
 
 ### More verbose development logging
