@@ -19,7 +19,7 @@ Copy the `.env-example` to `.env` and update all of the values.
 
 **Important**: The app needs a public address to receive incoming webhooks. You will need to either deploy it somewhere or you can use [ngrok.io](https://ngrok.io) to create a simple reverse proxy for the incoming requests.
 
-You can use a free ngrok accound but be aware that your ngrok forwarding address might/will change. A paid account that does not have this behaviour might be a better alternative for more intensive development.  
+You can use a free ngrok account but be aware that your ngrok forwarding address might/will change. A paid account that does not have this behaviour might be a better alternative for more intensive development.  
 
 However to make it work with a free account you can simply update the `NEXTAUTH_URL` in the `.env` and update the `callback` and `webhook` urls on your github app settings page <https://github.com/settings/apps/name-of-your-app>
 
