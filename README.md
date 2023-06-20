@@ -9,8 +9,8 @@ This is an app that will be able to dynamically import and schedule GitHub workf
 First, install and setup the environment:
 
 ```bash
-npm install
-npm prepare  # installs the git commit and push hooks
+yarn install
+yarn prepare  # installs the git commit and push hooks
 ```
 
 Copy the `.env-example` to `.env` and update all of the values.
@@ -51,18 +51,15 @@ A github app is needed for user authentication and github integration.
     - Copy the `App ID`
     - Copy the `Client ID`
 
-### Update local environment variables and run the server
+### Update local environment variables
 
-1. copy `.env-example` to `.env` and update the values with the values from the previous step
-    - **Important!** Note that you have to base64 encode the contents of the `Private Key` before inserting it in to the `.env` to the `GITHUB_APP_PRIVATE_KEY`.
+Copy `.env-example` to `.env` and update the values with the values from the previous step
 
-        ```bash
-        cat <path to the generated private key file>.pem | base64
-        ```
+**Important!** Note that you have to base64 encode the contents of the `Private Key` before inserting it in to the `.env` to the `GITHUB_APP_PRIVATE_KEY`.
 
-2. (Optionally if you want to run it locally) Start the mysql instance `docker-compose up -d`
-3. (Optionally) start ngrok to receive incoming webhooks
-4. Start the server `npm run dev`
+```bash
+cat <path to the generated private key file>.pem | base64
+```
 
 ### More verbose development logging
 
@@ -81,11 +78,12 @@ docker-compose up -d
 # (optional but recommended) i a separate terminal
 ngrok http 3000
 
+# install all of the dependencies
+yarn install
+
 # Create all of the tables in the database on the first run
 npx prisma db push
 
-# install all of the dependencies
-yarn install  
 # Start the local service
 yarn dev 
 ```
