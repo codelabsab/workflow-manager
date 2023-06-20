@@ -1,4 +1,4 @@
-import { Workflow } from "@prisma/client";
+import { type Workflow } from "@prisma/client";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { useClickAway } from "react-use";
@@ -9,17 +9,15 @@ import DisplayIfHasWorkflowRuns from "./DisplayIfHasWorkflowRuns";
 import ScheduleWorkflowRunForm from "components/WorkflowRunForm/ScheduleWorkflowRunForm";
 import WorkflowRunForm from "components/WorkflowRunForm/WorkflowRunForm";
 
-type WorkflowProps = {
+type WorkflowControlsProps = {
   workflow: Workflow;
 };
 
-const Workflow = ({ workflow }: WorkflowProps) => {
-  const [rawFile, setRawFile] = useState("");
+const WorkflowControls = ({ workflow }: WorkflowControlsProps) => {
   const [showRunForm, setShowRunForm] = useState(false);
   const [showScheduleForm, setShowScheduleForm] = useState(false);
   const runNowRef = useRef(null);
   const scheduleRunRef = useRef(null);
-  const notShowingYamlFile = !rawFile && Boolean(workflow.fileRaw);
 
   useClickAway(runNowRef, () => {
     setShowRunForm(false);
@@ -29,9 +27,8 @@ const Workflow = ({ workflow }: WorkflowProps) => {
   });
 
   return (
-    <div key={workflow.id} className="ml-10 space-y-4">
-      <div className="flex items-baseline justify-between rounded px-2 py-2 text-xs hover:bg-slate-100">
-        {workflow.name}
+    <div className="">
+      <div className="">
         <div className="space-x-2">
           {workflow.isDispatchable ? (
             <>
@@ -79,19 +76,6 @@ const Workflow = ({ workflow }: WorkflowProps) => {
           )}
 
           <span className="relative">
-            <button
-              className="rounded-lg bg-slate-200 px-2 py-1
-           hover:bg-slate-300"
-              onClick={() => {
-                if (notShowingYamlFile) {
-                  setRawFile(workflow.fileRaw || "");
-                } else {
-                  setRawFile("");
-                }
-              }}
-            >
-              {notShowingYamlFile ? "Show" : "Hide"} YAML
-            </button>
             {showRunForm ? (
               <div className="absolute right-28 top-6 z-10 ">
                 <WorkflowRunForm
@@ -124,13 +108,8 @@ const Workflow = ({ workflow }: WorkflowProps) => {
           </span>
         </div>
       </div>
-      {rawFile ? (
-        <pre className="rounded bg-gray-700 p-5 text-xs text-gray-50 shadow-lg">
-          {rawFile}
-        </pre>
-      ) : null}
     </div>
   );
 };
 
-export default Workflow;
+export default WorkflowControls;
