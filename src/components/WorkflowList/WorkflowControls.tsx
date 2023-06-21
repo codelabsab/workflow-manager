@@ -96,7 +96,7 @@ const WorkflowControls = ({ workflow }: WorkflowControlsProps) => {
 
             {showScheduleForm ? (
               <div
-                className="absolute right-28 top-6 z-10 "
+                className="absolute right-28 top-6 z-10 w-72"
                 ref={scheduleRunRef}
               >
                 <ScheduleWorkflowRunForm
