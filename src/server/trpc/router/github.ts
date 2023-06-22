@@ -79,10 +79,12 @@ export const githubRouter = router({
       return workflowRuns;
     }),
   getWorkflowScheduledRuns: protectedProcedure
-    .input(z.object({ workflowId: z.string() }))
+    .input(z.object({ workflowId: z.string().optional() }))
     .query(async ({ ctx, input }) => {
       const workflowRuns = await ctx.prisma.scheduledWorkflowRun.findMany({
-        where: { workflowId: Number(input.workflowId) },
+        where: {
+          ...(input.workflowId && { workflowId: Number(input.workflowId) }),
+        },
         take: 10,
         include: { workflow: true },
       });
