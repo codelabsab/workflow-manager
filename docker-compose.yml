@@ -23,3 +23,16 @@ services:
       - "13306:3306"
     volumes:
       - ./mysql/shadow:/var/lib/mysql
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      target: dev
+    restart: unless-stopped
+    command: yarn dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
