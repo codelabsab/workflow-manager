@@ -87,4 +87,3 @@ npx prisma db push
 # Start the local service
 yarn dev 
 ```
-
