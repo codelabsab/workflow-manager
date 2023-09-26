@@ -3,11 +3,14 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { env } from "env/server.mjs";
 import runScheduled from "server/utils/runScheduled";
 
-const GoogleCron = async (req: NextApiRequest, res: NextApiResponse) => {
-  const requestSecret = req.headers["cron-shared-secret"];
-  if (requestSecret !== env.GOOGLE_CLOUD_SCHEDULER_AUTH_SECRET) {
+const HEADER_NAME = "cron-shared-secret";
+
+const RunScheduledCron = async (req: NextApiRequest, res: NextApiResponse) => {
+  const secretValue = req.headers[HEADER_NAME];
+  if (secretValue !== env.GENERIC_SCHEDULER_AUTH_SECRET) {
     res.status(401).end("Access denied, please supply the correct header");
   }
+
   if (req.method === "POST") {
     try {
       await runScheduled();
@@ -31,4 +34,4 @@ export const config = {
   },
 };
 
-export default GoogleCron;
+export default RunScheduledCron;
