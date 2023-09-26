@@ -13,7 +13,7 @@ jobs:
           cp .env-example .env
       - name: Build and start the stack
         run: |
-          docker-compose up --build -d
+          docker compose up --build -d
       - name: Verify that the stack is running
         run: |
           bash ci-verify.sh
