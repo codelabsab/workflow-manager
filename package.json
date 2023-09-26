@@ -15,7 +15,8 @@
     "start": "next start",
     "studio": "prisma studio",
     "prepare": "husky install",
-    "detect-circular-imports": "madge --circular src/"
+    "detect-circular-imports": "madge --circular src/",
+    "run-cron": "node ./cron/cron.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
