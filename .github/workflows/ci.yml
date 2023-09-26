@@ -1,0 +1,22 @@
+name: Build & test
+on: [push]
+jobs:
+  build:
+    name: Build and verify stack
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup environment
+        run: |
+          cp .env-example .env
+      - name: Build and start the stack
+        run: |
+          docker-compose up --build -d
+      - name: Verify that the stack is running
+        run: |
+          bash ci-verify.sh
+          if [ $? -ne 0 ]; then
+            docker compose logs
+            exit 1
+          fi
+        shell: bash
