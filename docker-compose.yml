@@ -25,6 +25,7 @@ services:
   frontend:
     build:
       context: .
+      dockerfile: Dockerfile.dev
     restart: unless-stopped
     command: yarn dev
     volumes:
