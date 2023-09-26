@@ -1,17 +1,16 @@
-# docker-compose file with mysql service
 version: "3"
 services:
   main-mysql:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql/main:/var/lib/mysql
+      - db:/var/lib/mysql
   shadow-mysql:
     image: mysql
     environment:
@@ -22,12 +21,10 @@ services:
     ports:
       - "13306:3306"
     volumes:
-      - ./mysql/shadow:/var/lib/mysql
+      - db-shadow:/var/lib/mysql
   frontend:
-    container_name: frontend
     build:
       context: .
-      target: dev
     restart: unless-stopped
     command: yarn dev
     volumes:
@@ -36,3 +33,10 @@ services:
       - /app/.next
     ports:
       - "3000:3000"
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: "mysql://dev:password@main-mysql:3306/dev"
+
+volumes:
+  db:
+  db-shadow:

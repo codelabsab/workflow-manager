@@ -16,11 +16,14 @@ export const serverSchema = z.object({
     // VERCEL_URL doesnt include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string() : z.string().url()
   ),
-  GITHUB_APP_ID: z.string().default("1"),
+  GITHUB_APP_ID: z.string(),
   GITHUB_APP_CLIENT_ID: z.string(),
   GITHUB_APP_CLIENT_SECRET: z.string(),
-  GITHUB_APP_PRIVATE_KEY: z.string().default("Y2hhbmdlbWUK"),
-  VERBOSE_DEV_LOGGING: z.string().transform((str) => str === "true"),
+  GITHUB_APP_PRIVATE_KEY: z.string(),
+  VERBOSE_DEV_LOGGING: z
+    .string()
+    .default("false")
+    .transform((str) => str === "true"),
   // Cron envs
   GOOGLE_CLOUD_SCHEDULER_AUTH_SECRET: z.string(),
   // Optional qstash implementation
