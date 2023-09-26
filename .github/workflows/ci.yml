@@ -1,11 +1,13 @@
 name: Build & test
-on: [push]
+on:
+  pull_request:
+    branches: [main]
 jobs:
   build:
     name: Build and verify stack
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Setup environment
         run: |
           cp .env-example .env
