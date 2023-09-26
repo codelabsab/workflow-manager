@@ -20,7 +20,10 @@ export const serverSchema = z.object({
   GITHUB_APP_CLIENT_ID: z.string(),
   GITHUB_APP_CLIENT_SECRET: z.string(),
   GITHUB_APP_PRIVATE_KEY: z.string(),
-  VERBOSE_DEV_LOGGING: z.string().transform((str) => str === "true"),
+  VERBOSE_DEV_LOGGING: z
+    .string()
+    .default("false")
+    .transform((str) => str === "true"),
   // Cron envs
   GOOGLE_CLOUD_SCHEDULER_AUTH_SECRET: z.string(),
   // Optional qstash implementation
