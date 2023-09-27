@@ -23,7 +23,8 @@ const req = https.request(options, (res) => {
     data += d.toString();
   });
   res.on("end", (d) => {
-    let parsedData = JSON.parse(data);
+    const parsedData = JSON.parse(data);
+    console.log("parsedData", parsedData);
     let prodRunningFromDeployHook;
 
     prodRunningFromDeployHook =
