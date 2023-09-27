@@ -16,7 +16,7 @@
     "studio": "prisma studio",
     "prepare": "husky install",
     "detect-circular-imports": "madge --circular src/",
-    "run-cron": "node ./cron/cron.mjs"
+    "run-cron": "node ./cron.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
@@ -44,7 +44,7 @@
     "react-use": "^17.4.0",
     "superjson": "1.9.1",
     "yaml": "^2.3.2",
-    "zod": "^3.18.0"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.188",
@@ -54,6 +54,8 @@
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "autoprefixer": "^10.4.7",
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
     "eslint": "8.50.0",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "8.8.0",
@@ -61,6 +63,7 @@
     "husky": "8.0.2",
     "lint-staged": "^13.0.3",
     "lodash": "^4.17.21",
+    "node-cron": "^3.0.2",
     "postcss": "^8.4.30",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",

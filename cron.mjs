@@ -1,14 +1,9 @@
-import path from "path";
-import { fileURLToPath } from "url";
-
 import axios from "axios";
 import dotenv from "dotenv";
 import cron from "node-cron";
 import z from "zod";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
+dotenv.config();
 
 const envSchema = z.object({
   BASE_URL: z.string().url(),
