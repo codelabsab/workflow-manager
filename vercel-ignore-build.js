@@ -3,7 +3,7 @@ const https = require("https");
 const vercelEnv = process.env.VERCEL_ENV;
 
 const HOOK_NAME = "Deploy from github";
-const VERCEL_TARGET = "vercel-hook-only-deploy";
+const VERCEL_TARGET = "preview";
 const VERCEL_TEAM_ID = "team_vB8B9iCJ4406ANNFh8JbXMZs";
 
 const options = {
