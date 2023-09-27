@@ -87,3 +87,11 @@ npx prisma db push
 # Start the local service
 yarn dev 
 ```
+
+## Run the local cron worker
+
+There is a way to run a local cron worker that will trigger all scheduled runs when developing locally
+
+```bash
+yarn run-cron
+```
