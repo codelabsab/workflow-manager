@@ -87,3 +87,17 @@ npx prisma db push
 # Start the local service
 yarn dev 
 ```
+
+### Ngrok
+
+When you get a new **ngrok** url, you will need to replace the old url in your Github app. Here are the stepps:
+
+**Click on:**
+* Profile picture
+* Settings
+* Developer settings
+* Edit (on your app) -> Authenticate
+
+Replace your new ngrok **url** with old on **(remember to leave the subdirectorys on both)**:
+* Callback URL
+* Webhook URL
