@@ -110,4 +110,4 @@ There is a way to run a local cron worker that will trigger all scheduled runs w
 
 ```bash
 yarn run-cron
-
+```
