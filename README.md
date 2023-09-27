@@ -92,13 +92,9 @@ yarn dev
 
 When you get a new **ngrok** url, you will need to replace the old url in your Github app and .env file. Here are the steps:
 
-**Click on:**
-* Profile picture
-* Settings
-* Developer settings
-* Edit (on your app) -> Authenticate
+Go to your [apps](https://github.com/settings/apps)
 
-Replace your new ngrok **url** with old on **(remember to leave the subdirectories on both)**:
+Replace your new ngrok **url** with old on (remember to leave the subdirectories on both):
 * Callback URL
 * Webhook URL
 
