@@ -90,7 +90,7 @@ yarn dev
 
 ### Ngrok
 
-When you get a new **ngrok** url, you will need to replace the old url in your Github app and .env file. Here are the stepps:
+When you get a new **ngrok** url, you will need to replace the old url in your Github app and .env file. Here are the steps:
 
 **Click on:**
 * Profile picture
