@@ -76,3 +76,49 @@ cat <path to the generated private key file>.pem | base64 | pbcopy
 ### More verbose development logging
 
 Add the `VERBOSE_DEV_LOGGING=true` to your `.env` file to enable prisma `query` logging.
+
+### Actually running the service locally
+
+The repository comes with a local `docker-compose` that will host 2 local mysql databases that can be used for development. Why 2 databases you ask? Well one is a shadow database used for generating migrations.
+
+You can however choose to run on a <https://planetscale.com> instance instead.
+
+```bash
+# or just docker-compose up in a separate terminal  
+docker-compose up -d
+
+# (optional but recommended) i a separate terminal
+ngrok http 3000
+
+# install all of the dependencies
+yarn install
+
+# Create all of the tables in the database on the first run
+npx prisma db push
+
+# Start the local service
+yarn dev 
+```
+
+
+### Ngrok
+
+When you get a new **ngrok** url, you will need to replace the old url in your Github app and .env file. Here are the steps:
+
+Edit your github [app](https://github.com/settings/apps)
+
+Replace your new ngrok **url** with old on *(remember to leave the subdirectories on both)*:
+* Callback URL
+* Webhook URL
+
+On the .env file:
+
+Replace the value of **NEXTAUTH_URL** variable with your new url
+
+### Run the local cron worker
+
+There is a way to run a local cron worker that will trigger all scheduled runs when developing locally
+
+```bash
+yarn run-cron
+```
