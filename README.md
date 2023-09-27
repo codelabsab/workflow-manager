@@ -6,14 +6,26 @@ This is an app that will be able to dynamically import and schedule GitHub workf
 
 ## Getting started
 
-First, install and setup the environment:
+Hello there! 👋
+
+Thank you for taking the time to check out this project. Looking to contribute? Great! Please read the [contribution guidelines](docs/CONTRIBUTING.md) first.
+
+### Quick start local development
+The repository comes with a local `docker-compose` that can be used for development.
 
 ```bash
-yarn install
-yarn prepare  # installs the git commit and push hooks
-```
+# Copy example env file (and update the values if needed)
+cp .env-example .env
 
-Copy the `.env-example` to `.env` and update all of the values.
+# Build and start the app
+docker compose up --build -d
+
+# (optional but recommended) i a separate terminal
+ngrok http 3000
+
+# Create all of the tables in the database on the first run
+npx prisma db push
+```
 
 ## Running local development
 
