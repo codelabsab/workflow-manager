@@ -24,6 +24,7 @@ const req = https.request(options, (res) => {
   });
   res.on("end", (d) => {
     const parsedData = JSON.parse(data);
+    console.log("process.env.VERCEL_ENV", process.env.VERCEL_ENV);
     console.log("parsedData", parsedData);
     let prodRunningFromDeployHook;
 
@@ -34,7 +35,10 @@ const req = https.request(options, (res) => {
       hook: parsedData.meta.deployHookName,
     });
 
-    if (vercelEnv === VERCEL_TARGET && !prodRunningFromDeployHook) {
+    if (
+      process.env.VERCEL_ENV === VERCEL_TARGET &&
+      !prodRunningFromDeployHook
+    ) {
       console.log("🛑 - Build cancelled");
       process.exit(0);
     } else {
