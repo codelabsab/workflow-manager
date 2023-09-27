@@ -88,6 +88,7 @@ npx prisma db push
 yarn dev 
 ```
 
+
 ### Ngrok
 
 When you get a new **ngrok** url, you will need to replace the old url in your Github app and .env file. Here are the steps:
@@ -101,3 +102,12 @@ Replace your new ngrok **url** with old on *(remember to leave the subdirectorie
 On the .env file:
 
 Replace the value of **NEXTAUTH_URL** variable with your new url
+
+
+### Run the local cron worker
+
+There is a way to run a local cron worker that will trigger all scheduled runs when developing locally
+
+```bash
+yarn run-cron
+
