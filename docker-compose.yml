@@ -38,6 +38,8 @@ services:
       NODE_ENV: development
       DATABASE_URL: "mysql://dev:password@main-mysql:3306/dev"
   cron:
+    depends_on:
+      - frontend
     build:
       context: .
       dockerfile: Dockerfile.dev
