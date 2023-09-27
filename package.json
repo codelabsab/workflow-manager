@@ -35,7 +35,7 @@
     "madge": "^5.0.1",
     "next": "13.0.0",
     "next-auth": "^4.15.0",
-    "octokit": "2.0.10",
+    "octokit": "3.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.3",
