@@ -27,9 +27,6 @@ export const serverSchema = z.object({
     .transform((str) => str === "true"),
   // Cron envs
   GENERIC_SCHEDULER_AUTH_SECRET: z.string(),
-  // Optional qstash implementation
-  QSTASH_NEXT_SIGNING_KEY: z.string().optional(),
-  QSTASH_CURRENT_SIGNING_KEY: z.string().optional(),
 });
 
 /**
