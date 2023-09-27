@@ -27,9 +27,7 @@ const req = https.request(options, (res) => {
     console.log("parsedData", parsedData);
     let prodRunningFromDeployHook;
 
-    prodRunningFromDeployHook =
-      parsedData.target === VERCEL_TARGET &&
-      parsedData.meta.deployHookName === HOOK_NAME;
+    prodRunningFromDeployHook = parsedData.meta.deployHookName === HOOK_NAME;
 
     console.log({
       target: parsedData.target,
