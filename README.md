@@ -107,7 +107,9 @@ When you get a new **ngrok** url, you will need to replace the old url in your G
 
 Edit your github [app](https://github.com/settings/apps)
 
-Replace your new ngrok **url** with old on *(remember to leave the subdirectories on both)*:
+Replace your new ngrok **url** with old on: *(remember to leave the subdirectories on both)*
+
+
 * Callback URL
 * Webhook URL
 
