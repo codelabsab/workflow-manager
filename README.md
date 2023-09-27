@@ -103,7 +103,6 @@ On the .env file:
 
 Replace the value of **NEXTAUTH_URL** variable with your new url
 
-
 ### Run the local cron worker
 
 There is a way to run a local cron worker that will trigger all scheduled runs when developing locally
