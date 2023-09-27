@@ -6,14 +6,26 @@ This is an app that will be able to dynamically import and schedule GitHub workf
 
 ## Getting started
 
-First, install and setup the environment:
+Hello there! 👋
+
+Thank you for taking the time to check out this project. Looking to contribute? Great! Please read the [contribution guidelines](docs/CONTRIBUTING.md) first.
+
+### Quick start local development
+The repository comes with a local `docker-compose` that can be used for development.
 
 ```bash
-yarn install
-yarn prepare  # installs the git commit and push hooks
-```
+# Copy example env file (and update the values if needed)
+cp .env-example .env
 
-Copy the `.env-example` to `.env` and update all of the values.
+# Build and start the app
+docker compose up --build -d
+
+# (optional but recommended) i a separate terminal
+ngrok http 3000
+
+# Create all of the tables in the database on the first run
+npx prisma db push
+```
 
 ## Running local development
 
@@ -64,26 +76,3 @@ cat <path to the generated private key file>.pem | base64 | pbcopy
 ### More verbose development logging
 
 Add the `VERBOSE_DEV_LOGGING=true` to your `.env` file to enable prisma `query` logging.
-
-### Actually running the service locally
-
-The repository comes with a local `docker-compose` that will host 2 local mysql databases that can be used for development. Why 2 databases you ask? Well one is a shadow database used for generating migrations.
-
-You can however choose to run on a <https://planetscale.com> instance instead.
-
-```bash
-# or just docker-compose up in a separate terminal  
-docker-compose up -d
-
-# (optional but recommended) i a separate terminal
-ngrok http 3000
-
-# install all of the dependencies
-yarn install
-
-# Create all of the tables in the database on the first run
-npx prisma db push
-
-# Start the local service
-yarn dev 
-```
