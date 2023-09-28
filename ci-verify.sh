@@ -1,7 +1,7 @@
 SUCCESS=0
 
 for try in {1..3}; do
-  status_code=$(curl --write-out %{http_code} --silent --output /dev/null http://localhost:3000)
+  status_code=$(curl --write-out %{http_code} --silent --output /dev/null http://localhost:3000/api/health)
   if [[ "$status_code" -eq 200 ]] ; then
       SUCCESS=1
       break
