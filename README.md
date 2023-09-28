@@ -2,7 +2,7 @@
 
 - [ ] Säljande beskrivning av vad det här är
   - [ ] med bild/gif
-- [ ] Gå igenom Getting started så att det går att följa den
+- [x] Gå igenom Getting started så att det går att följa den
 - [ ] Beskriva scheduling
 - [ ] Beskriv arkitektur
 
