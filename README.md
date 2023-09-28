@@ -36,7 +36,7 @@ The repository comes with a local `docker-compose` that can be used for developm
 4. Build and start the local docker compose containers
 
     ```bash
-    docker compose --build -d
+    docker compose up --build -d
     ```
 
 5. Push the database schema to the database
