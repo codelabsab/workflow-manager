@@ -1,18 +1,27 @@
 # Workflow Manager
 
-- [ ] Säljande beskrivning av vad det här är
-  - [ ] med bild/gif
-- [x] Gå igenom Getting started så att det går att följa den
-- [ ] Beskriva scheduling
-- [ ] Beskriv arkitektur
-
-## Intro
-
-This is an app that will be able to dynamically import and schedule GitHub workflows.
-
 Hello there! 👋
 
 Thank you for taking the time to check out this project. Looking to contribute? Great! Please read the [contribution guidelines](docs/CONTRIBUTING.md) first.
+
+- [ ] Säljande beskrivning av vad det här är
+  - [ ] med bild/gif
+- [x] Gå igenom Getting started så att det går att följa den
+- [x] Beskriva scheduling
+- [x] Beskriv arkitektur
+
+## Intro
+
+Do you use github actions? Maybe you use it to run workflows that should do something at a specific date and time.
+
+This is an app that will be able to dynamically import and schedule GitHub workflows.
+
+### Features
+
+- Github integration
+  - Authentication
+  - Importing repositories and workflows
+  - Triggering workflows  
 
 ## Getting started
 
@@ -44,3 +53,20 @@ The repository comes with a local `docker-compose` that can be used for developm
     ```bash
     docker compose exec frontend npx prisma db push
     ```
+
+Now you should be able to browse to <http://localhost:3000>
+
+## Architecture
+
+The application is built using Typescript, [Next.js](https://nextjs.org/), [tRPC](https://trpc.io/), [tailwindcss](https://tailwindcss.com/), and [Prisma](https://www.prisma.io/).
+
+Authentication is done with [NextAuth.js](https://next-auth.js.org/) and using GitHub as the main [Provider](https://next-auth.js.org/providers/github).
+
+The application relies on incoming webhooks to receive events from GitHub. To solve this when developing locally behind a NAT router we have used [ngrok](https://ngrok.com/). *Note that ngrok is not a requirement but one of many webhook development tools.*
+
+### Scheduling
+
+The code that handles the scheduling at the moment quite simple.
+
+1. First we have a special private api endpoint that will find all of the scheduled workflows that should be fired in github at the current point in time.
+2. The second part consist of some small script that will make a http request to that endpoint every minute.
