@@ -5,6 +5,7 @@ import ALink from "components/ALink";
 import Divider from "components/Divider";
 import TopLevelHeading from "components/FrontPage/TopLevelHeading";
 import Main from "components/Layout/Main";
+import RoundedDiv from "components/RoundedDiv";
 import WorkflowCard from "components/WorkflowCard";
 import useFullRepoName from "hooks/useFullRepoName";
 import useGetRepoTabs from "hooks/useGetRepoTabs";
@@ -46,7 +47,7 @@ const Repository: NextPage = () => {
         subHeader={repositoryFullName}
       />
       <Main>
-        <div className="mt-3 overflow-hidden rounded-lg bg-white shadow">
+        <RoundedDiv>
           <div className="px-4 py-5 sm:px-6">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               {repository.data?.name}
@@ -113,7 +114,7 @@ const Repository: NextPage = () => {
               />
             </dl>
           </div>
-        </div>
+        </RoundedDiv>
         <Divider>Workflows</Divider>
         {repository.data?.workflows.map((workflow) => (
           <WorkflowCard key={workflow.id} workflow={workflow} />
