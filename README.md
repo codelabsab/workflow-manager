@@ -1,124 +1,64 @@
 # Workflow Manager
 
-> **Work in progress!**
-
-This is an app that will be able to dynamically import and schedule GitHub workflows.
-
-## Getting started
-
 Hello there! 👋
 
 Thank you for taking the time to check out this project. Looking to contribute? Great! Please read the [contribution guidelines](docs/CONTRIBUTING.md) first.
 
+Do you use github actions? Maybe you use it to run workflows that should do something at a specific date and time.
+
+This is an app that will be able to dynamically import and schedule GitHub workflows.
+
+## Features
+
+- Github integration
+  - Authentication
+  - Importing repositories and workflows
+  - Triggering workflows  
+
+## Getting started
+
 ### Quick start local development
+
 The repository comes with a local `docker-compose` that can be used for development.
 
-```bash
-# Copy example env file (and update the values if needed)
-cp .env-example .env
+1. Start ngrok to handle incoming webhooks from GitHub. [See the development readme for more details](docs/DEVELOPMENT.md#ngrok)
 
-# Build and start the app
-docker compose up --build -d
+    ```bash
+    ngrok http 3000
+    ```
 
-# (optional but recommended) i a separate terminal
-ngrok http 3000
+2. [Create the GitHub App](docs/DEVELOPMENT.md#creating-the-github-app)
+3. Copy [example env file](./.env-example) and update the values needed
 
-# Create all of the tables in the database on the first run
-npx prisma db push
-```
+    ```bash
+    cp .env-example .env
+    ```
 
-## Running local development
+4. Build and start the local docker compose containers
 
-**Important**: The app needs a public address to receive incoming webhooks. You will need to either deploy it somewhere or you can use [ngrok.io](https://ngrok.io) to create a simple reverse proxy for the incoming requests.
+    ```bash
+    docker compose up --build -d
+    ```
 
-You can use a free ngrok account but be aware that your ngrok forwarding address might/will change. A paid account that does not have this behaviour might be a better alternative for more intensive development.  
+5. Push the database schema to the database
 
-However to make it work with a free account you can simply update the `NEXTAUTH_URL` in the `.env` and update the `callback` and `webhook` urls on your github app settings page <https://github.com/settings/apps/name-of-your-app>
+    ```bash
+    docker compose exec frontend npx prisma db push
+    ```
 
-### Creating the Github App
+Now you should be able to browse to <http://localhost:3000>
 
-A github app is needed for user authentication and github integration.
+## Architecture
 
-1. Go to <https://github.com/settings/apps> and create a new app
-2. The app naming does not matter, but will be displayed to the end-user
-3. Add a callback to **Identifying and authorizing users**
-    - Set the callback url to: `https://<your public domain or localhost>/api/auth`
-4. Activate the Webhook section and set the **Webhook URL** to `https://<publicly available domain>/api/github/events`
-5. Set the following permissions
-    - Repository permissions:
-        - Actions: Read & Write
-        - Contents: Read-only
-        - Metadata: Read-only
-        - Workflows: Read & Write
-    - Organization permissions:
-        - Members: Read-only
-    - Account permissions:
-        - Email addresses: Read-only
-6. Add the following in the **Subscribe to events** section
-    - Push
-    - Workflow Job
-    - Workflow Run
-7. Store the settings needed for the runtime environment `.env` file
-    - Generate a new `Client secrets` and download the `Private key`
-    - Copy the `App ID`
-    - Copy the `Client ID`
+The application is built using Typescript, [Next.js](https://nextjs.org/), [tRPC](https://trpc.io/), [tailwindcss](https://tailwindcss.com/), and [Prisma](https://www.prisma.io/).
 
-### Update local environment variables
+Authentication is done with [NextAuth.js](https://next-auth.js.org/) and using GitHub as the main [Provider](https://next-auth.js.org/providers/github).
 
-Copy `.env-example` to `.env` and update the values with the values from the previous step
+The application relies on incoming webhooks to receive events from GitHub. To solve this when developing locally behind a NAT router we have used [ngrok](https://ngrok.com/). *Note that ngrok is not a requirement but one of many webhook development tools.*
 
-**Important!** Note that you have to base64 encode the contents of the `Private Key` before inserting it in to the `.env` to the `GITHUB_APP_PRIVATE_KEY`.
+### Scheduling
 
-```bash
-cat <path to the generated private key file>.pem | base64 | pbcopy
-```
+The code that handles the scheduling at the moment quite simple.
 
-### More verbose development logging
-
-Add the `VERBOSE_DEV_LOGGING=true` to your `.env` file to enable prisma `query` logging.
-
-### Actually running the service locally
-
-The repository comes with a local `docker-compose` that will host 2 local mysql databases that can be used for development. Why 2 databases you ask? Well one is a shadow database used for generating migrations.
-
-You can however choose to run on a <https://planetscale.com> instance instead.
-
-```bash
-# or just docker-compose up in a separate terminal  
-docker-compose up -d
-
-# (optional but recommended) i a separate terminal
-ngrok http 3000
-
-# install all of the dependencies
-yarn install
-
-# Create all of the tables in the database on the first run
-npx prisma db push
-
-# Start the local service
-yarn dev 
-```
-
-
-### Ngrok
-
-When you get a new **ngrok** url, you will need to replace the old url in your Github app and .env file. Here are the steps:
-
-Edit your github [app](https://github.com/settings/apps)
-
-Replace your new ngrok **url** with old on *(remember to leave the subdirectories on both)*:
-* Callback URL
-* Webhook URL
-
-On the .env file:
-
-Replace the value of **NEXTAUTH_URL** variable with your new url
-
-### Run the local cron worker
-
-There is a way to run a local cron worker that will trigger all scheduled runs when developing locally
-
-```bash
-yarn run-cron
-```
+1. First we have a special private api endpoint that will find all of the scheduled workflows that should be fired in github at the current point in time.
+2. The second part consist of some small script that will make a http request to that endpoint every minute.
