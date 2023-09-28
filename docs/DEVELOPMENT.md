@@ -47,6 +47,6 @@ Replace your new ngrok **url** with old on *(remember to leave the subdirectorie
 - Callback URL
 - Webhook URL
 
-On the .env file:
+In the `.env` file:
 
-Replace the value of **NEXTAUTH_URL** variable with your new url
+**Important!** Replace the URLs of `NEXTAUTH_URL` and `BASE_URL` variable with your new url

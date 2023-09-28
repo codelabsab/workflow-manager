@@ -4,7 +4,7 @@
   - [ ] med bild/gif
 - [ ] Gå igenom Getting started så att det går att följa den
 - [ ] Beskriva scheduling
-- [ ] .
+- [ ] Beskriv arkitektur
 
 ## Intro
 
