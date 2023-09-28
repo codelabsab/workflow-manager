@@ -4,19 +4,11 @@ Hello there! 👋
 
 Thank you for taking the time to check out this project. Looking to contribute? Great! Please read the [contribution guidelines](docs/CONTRIBUTING.md) first.
 
-- [ ] Säljande beskrivning av vad det här är
-  - [ ] med bild/gif
-- [x] Gå igenom Getting started så att det går att följa den
-- [x] Beskriva scheduling
-- [x] Beskriv arkitektur
-
-## Intro
-
 Do you use github actions? Maybe you use it to run workflows that should do something at a specific date and time.
 
 This is an app that will be able to dynamically import and schedule GitHub workflows.
 
-### Features
+## Features
 
 - Github integration
   - Authentication
