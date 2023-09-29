@@ -11,11 +11,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
+          node-version-file: ".nvmrc"
+          cache: "yarn"
       - name: Run yarn install
         run: yarn install
       - name: copy .env-example to .env
         run: cp .env-example .env
       - name: Run yarn lint
         run: yarn lint
+      - name: Check typescript
+        run: yarn check-typescript
