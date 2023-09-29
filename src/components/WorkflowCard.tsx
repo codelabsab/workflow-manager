@@ -13,7 +13,7 @@ type WorkflowCardProps = {
 
 const WorkflowCard = ({ workflow }: WorkflowCardProps) => {
   return (
-    <RoundedDiv id={String(workflow.id)}>
+    <RoundedDiv>
       <div className="sticky top-0 flex items-center justify-between rounded-t-lg border-b bg-white py-3.5 pl-4 pr-4 text-left text-lg font-medium leading-6 text-gray-900 sm:pl-6">
         <div>{workflow.name}</div>
         <div className="flex justify-center text-xs">
