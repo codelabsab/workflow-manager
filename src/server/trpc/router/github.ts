@@ -94,7 +94,7 @@ export const githubRouter = router({
 
       const workflowRuns = await ctx.prisma.workflowRun.findMany({
         where: { workflowId: { in: workflowIds } },
-        orderBy: { created_at: "asc" },
+        orderBy: { updated_at: "desc" },
         include: { workflow: true },
       });
 

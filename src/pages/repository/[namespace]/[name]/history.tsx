@@ -19,8 +19,6 @@ const HistoryPage = () => {
     return <>Loading</>;
   }
 
-  console.log("data", data);
-
   return (
     <>
       <TopLevelHeading tabs={tabs} titleString="Scheduled Runs" />
@@ -33,7 +31,7 @@ const HistoryPage = () => {
               {data?.map((workflowRun) => (
                 <div key={workflowRun.id}>
                   {workflowRun.workflow.name}
-                  {workflowRun.created_at.toISOString()}{" "}
+                  {workflowRun.created_at.toISOString()} {workflowRun.status}{" "}
                   {workflowRun.conclusion}
                 </div>
               ))}
