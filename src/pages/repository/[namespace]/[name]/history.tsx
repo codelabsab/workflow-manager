@@ -36,6 +36,17 @@ const HistoryPage = () => {
     );
   }
 
+  if (data?.length === 0) {
+    return (
+      <>
+        <TopLevelHeading tabs={tabs} titleString="Repository" />
+        <Main>
+          <div>No history found</div>
+        </Main>
+      </>
+    );
+  }
+
   return (
     <>
       <TopLevelHeading
