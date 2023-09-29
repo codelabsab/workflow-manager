@@ -78,6 +78,28 @@ export const githubRouter = router({
       });
       return workflowRuns;
     }),
+  getRepositoryWorkflowRuns: protectedProcedure
+    .input(z.object({ repositoryFullName: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const repo = await ctx.prisma.repo.findFirstOrThrow({
+        where: { full_name: input.repositoryFullName },
+        include: { workflows: true },
+      });
+
+      if (!repo.workflows.length) {
+        return null;
+      }
+
+      const workflowIds = repo.workflows.map((workflow) => workflow.id);
+
+      const workflowRuns = await ctx.prisma.workflowRun.findMany({
+        where: { workflowId: { in: workflowIds } },
+        orderBy: { updated_at: "desc" },
+        include: { workflow: true },
+      });
+
+      return workflowRuns;
+    }),
   getWorkflowScheduledRuns: protectedProcedure
     .input(z.object({ workflowId: z.string().optional() }))
     .query(async ({ ctx, input }) => {
