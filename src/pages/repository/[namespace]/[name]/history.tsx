@@ -2,6 +2,7 @@ import React from "react";
 
 import TopLevelHeading from "components/FrontPage/TopLevelHeading";
 import Main from "components/Layout/Main";
+import Loading from "components/Loading";
 import RoundedDiv from "components/RoundedDiv";
 import useFullRepoName from "hooks/useFullRepoName";
 import useGetRepoTabs from "hooks/useGetRepoTabs";
@@ -25,7 +26,14 @@ const HistoryPage = () => {
   );
 
   if (isLoading) {
-    return <>Loading</>;
+    return (
+      <>
+        <TopLevelHeading tabs={tabs} titleString="Repository" />
+        <Main>
+          <Loading />
+        </Main>
+      </>
+    );
   }
 
   return (
