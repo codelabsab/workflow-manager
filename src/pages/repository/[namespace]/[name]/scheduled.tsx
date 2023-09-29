@@ -118,12 +118,22 @@ const ScheduledRuns: NextPage = () => {
   };
 
   if (repository.isLoading) {
-    return <TopLevelHeading tabs={tabs} titleString="Scheduled Runs" />;
+    return (
+      <TopLevelHeading
+        tabs={tabs}
+        titleString="Scheduled Runs"
+        subHeader={repositoryFullName}
+      />
+    );
   }
 
   return (
     <>
-      <TopLevelHeading tabs={tabs} titleString="Scheduled Runs" />
+      <TopLevelHeading
+        tabs={tabs}
+        titleString="Scheduled Runs"
+        subHeader={repositoryFullName}
+      />
 
       <Main>
         <RoundedDiv>
