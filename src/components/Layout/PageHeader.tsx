@@ -14,7 +14,7 @@ type PageHeaderProps = {
 const PageHeader = ({ tabs, subHeader }: PageHeaderProps) => {
   return (
     <div className="border-b border-slate-200 bg-white px-5 pt-2">
-      <div className="container mx-auto px-5">
+      <div className="container mx-auto">
         <div className="flex items-center justify-between pt-5">
           <div className="flex flex-col items-baseline sm:flex-row sm:gap-4">
             <Link href="/">

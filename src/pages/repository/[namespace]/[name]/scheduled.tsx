@@ -8,6 +8,7 @@ import JsonValue = Prisma.JsonValue;
 import Divider from "components/Divider";
 import TopLevelHeading from "components/FrontPage/TopLevelHeading";
 import Main from "components/Layout/Main";
+import RoundedDiv from "components/RoundedDiv";
 import ScheduleWorkflowRunForm from "components/WorkflowRunForm/ScheduleWorkflowRunForm";
 import useFullRepoName from "hooks/useFullRepoName";
 import useGetRepoTabs from "hooks/useGetRepoTabs";
@@ -125,64 +126,64 @@ const ScheduledRuns: NextPage = () => {
       <TopLevelHeading tabs={tabs} titleString="Scheduled Runs" />
 
       <Main>
-        <div className="rounded-lg border bg-white px-4 py-5 shadow">
-          <div>
-            <div className="flex gap-5">
-              <div className="flex items-start lg:w-72">
-                <select
-                  onChange={({ target }) => handleSelect(target.value)}
-                  value={selection}
-                  className="w-full truncate rounded border-gray-700 text-lg"
-                >
-                  <option value="" disabled>
-                    Select workflow
+        <RoundedDiv>
+          <div className="flex gap-5 p-5">
+            <div className="flex items-start lg:w-72">
+              <select
+                onChange={({ target }) => handleSelect(target.value)}
+                value={selection}
+                className="w-full truncate rounded border-gray-700 text-lg"
+              >
+                <option value="" disabled>
+                  Select workflow
+                </option>
+                {repository.data?.workflows.map((workflow) => (
+                  <option key={workflow.id} value={workflow.id}>
+                    {workflow.name}
                   </option>
-                  {repository.data?.workflows.map((workflow) => (
-                    <option key={workflow.id} value={workflow.id}>
-                      {workflow.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex flex-grow">
-                {!workflow && (
-                  <h3 className="p-2 text-lg font-semibold text-gray-300">
-                    Select a workflow to schedule
-                  </h3>
-                )}
-                {workflow && (
-                  <ScheduleWorkflowRunForm
-                    workflow={workflow}
-                    onSubmitCallback={onSubmit}
-                    cols={3}
-                  />
-                )}
-              </div>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-grow">
+              {!workflow && (
+                <h3 className="p-2 text-lg font-semibold text-gray-300">
+                  Select a workflow to schedule
+                </h3>
+              )}
+              {workflow && (
+                <ScheduleWorkflowRunForm
+                  workflow={workflow}
+                  onSubmitCallback={onSubmit}
+                  cols={3}
+                />
+              )}
             </div>
           </div>
-        </div>
+        </RoundedDiv>
         <Divider>Scheduled runs</Divider>
-        <div className="rounded-lg border bg-white px-4 py-5 shadow">
-          <table className="w-full table-fixed truncate text-left font-mono text-xs">
-            <thead>
-              <tr>
-                <td className="w-2 truncate font-bold">id</td>
-                <td className="w-2 truncate font-bold">workflowId</td>
-                <td className="w-2 truncate font-bold">hasBeenTriggered</td>
-                <td className="w-2 truncate font-bold">runAt</td>
-                <td className="w-2 truncate font-bold">userId</td>
-                <td className="w-2 truncate font-bold">inputs</td>
-              </tr>
-            </thead>
-            <tbody>
-              {scheduledRuns.map((scheduledRun) => (
-                <Fragment key={scheduledRun.id}>
-                  <RowComponent {...scheduledRun} />
-                </Fragment>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <RoundedDiv className="p-5">
+          <div className="p-5">
+            <table className="w-full table-fixed truncate text-left font-mono text-xs">
+              <thead>
+                <tr>
+                  <td className="w-2 truncate font-bold">id</td>
+                  <td className="w-2 truncate font-bold">workflowId</td>
+                  <td className="w-2 truncate font-bold">hasBeenTriggered</td>
+                  <td className="w-2 truncate font-bold">runAt</td>
+                  <td className="w-2 truncate font-bold">userId</td>
+                  <td className="w-2 truncate font-bold">inputs</td>
+                </tr>
+              </thead>
+              <tbody>
+                {scheduledRuns.map((scheduledRun) => (
+                  <Fragment key={scheduledRun.id}>
+                    <RowComponent {...scheduledRun} />
+                  </Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </RoundedDiv>
       </Main>
     </>
   );
