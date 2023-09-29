@@ -26,14 +26,18 @@ cron.schedule(EVERY_MINUTE, async () => {
   const url = `${env.BASE_URL}/api/cron/generic`;
   console.log(`Executing ${url}`);
 
-  const response = await axios.post(
-    url,
-    {},
-    {
-      headers: {
-        "cron-shared-secret": env.GENERIC_SCHEDULER_AUTH_SECRET,
-      },
-    }
-  );
-  console.log(`response.status: ${response.status}`);
+  try {
+    const response = await axios.post(
+      url,
+      {},
+      {
+        headers: {
+          "cron-shared-secret": env.GENERIC_SCHEDULER_AUTH_SECRET,
+        },
+      }
+    );
+    console.log(`response.status: ${response.status}`);
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
 });

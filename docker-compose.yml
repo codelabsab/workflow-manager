@@ -49,6 +49,7 @@ services:
       - /app/node_modules
     environment:
       NODE_ENV: development
+      BASE_URL: "http://frontend:3000"
 
 volumes:
   db:

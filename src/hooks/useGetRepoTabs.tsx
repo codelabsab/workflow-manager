@@ -12,8 +12,8 @@ export default function useGetRepoTabs() {
       href: `/repository/${repositoryFullName}/scheduled`,
     },
     {
-      name: "Log",
-      href: `/repository/${repositoryFullName}/log`,
+      name: "History",
+      href: `/repository/${repositoryFullName}/history`,
     },
   ];
   return tabs;
