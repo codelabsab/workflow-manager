@@ -1,7 +1,7 @@
 import type { Workflow } from "@prisma/client";
 import { Prisma } from "@prisma/client";
 import { type NextPage } from "next";
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { toast } from "react-toastify";
 
 import JsonValue = Prisma.JsonValue;
@@ -17,6 +17,10 @@ import { trpc } from "utils/trpc";
 const getRunDate = (runAt: Date): string => {
   return new Date(runAt).toUTCString();
 };
+
+const Row = ({ children }: { children: React.ReactNode }) => (
+  <td className="truncate p-2 font-bold">{children}</td>
+);
 
 const RowComponent = ({
   id,
@@ -173,15 +177,15 @@ const ScheduledRuns: NextPage = () => {
         <Divider>Scheduled runs</Divider>
         <RoundedDiv className="p-5">
           <div className="p-5">
-            <table className="w-full table-fixed truncate text-left font-mono text-xs">
+            <table className="w-full truncate">
               <thead>
                 <tr>
-                  <td className="w-2 truncate font-bold">id</td>
-                  <td className="w-2 truncate font-bold">workflowId</td>
-                  <td className="w-2 truncate font-bold">hasBeenTriggered</td>
-                  <td className="w-2 truncate font-bold">runAt</td>
-                  <td className="w-2 truncate font-bold">userId</td>
-                  <td className="w-2 truncate font-bold">inputs</td>
+                  <Row>id</Row>
+                  <Row>workflowId</Row>
+                  <Row>hasBeenTriggered</Row>
+                  <Row>runAt</Row>
+                  <Row>userId</Row>
+                  <Row>inputs</Row>
                 </tr>
               </thead>
               <tbody>
