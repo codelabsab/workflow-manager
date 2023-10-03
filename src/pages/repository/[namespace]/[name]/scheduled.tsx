@@ -19,7 +19,7 @@ const getRunDate = (runAt: Date): string => {
 };
 
 const Row = ({ children }: { children: React.ReactNode }) => (
-  <td className="truncate p-2 font-bold">{children}</td>
+  <td className="truncate p-2">{children}</td>
 );
 
 const RowComponent = ({
@@ -48,12 +48,12 @@ const RowComponent = ({
         }`}
         onClick={() => setOpen(!open)}
       >
-        <td className="w-2 truncate">{id}</td>
-        <td className="w-2 truncate">{workflowId}</td>
-        <td className="w-2 truncate">{`${hasBeenTriggered}`}</td>
-        <td className="w-2 truncate">{getRunDate(runAt)}</td>
-        <td className="w-2 truncate">{userId}</td>
-        <td className="w-2 truncate">{JSON.stringify(inputs)}</td>
+        <Row>{id}</Row>
+        <Row>{workflowId}</Row>
+        <Row>{`${hasBeenTriggered}`}</Row>
+        <Row>{getRunDate(runAt)}</Row>
+        <Row>{userId}</Row>
+        <Row>{JSON.stringify(inputs)}</Row>
       </tr>
       {open && (
         <tr className="bg-gray-50">
@@ -178,16 +178,14 @@ const ScheduledRuns: NextPage = () => {
         <RoundedDiv className="p-5">
           <div className="p-5">
             <table className="w-full truncate">
-              <thead>
-                <tr>
-                  <Row>id</Row>
-                  <Row>workflowId</Row>
-                  <Row>hasBeenTriggered</Row>
-                  <Row>runAt</Row>
-                  <Row>userId</Row>
-                  <Row>inputs</Row>
-                </tr>
-              </thead>
+              <tr>
+                <th className={`p-2`}>id</th>
+                <th className={`p-2`}>workflowId</th>
+                <th className={`p-2`}>hasBeenTriggered</th>
+                <th className={`p-2`}>runAt</th>
+                <th className={`p-2`}>userId</th>
+                <th className={`p-2`}>inputs</th>
+              </tr>
               <tbody>
                 {scheduledRuns.map((scheduledRun) => (
                   <Fragment key={scheduledRun.id}>
