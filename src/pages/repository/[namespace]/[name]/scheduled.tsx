@@ -178,14 +178,16 @@ const ScheduledRuns: NextPage = () => {
         <RoundedDiv className="p-5">
           <div className="p-5">
             <table className="w-full truncate">
-              <tr>
-                <th className={`p-2`}>id</th>
-                <th className={`p-2`}>workflowId</th>
-                <th className={`p-2`}>hasBeenTriggered</th>
-                <th className={`p-2`}>runAt</th>
-                <th className={`p-2`}>userId</th>
-                <th className={`p-2`}>inputs</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th className={`p-2`}>id</th>
+                  <th className={`p-2`}>workflowId</th>
+                  <th className={`p-2`}>hasBeenTriggered</th>
+                  <th className={`p-2`}>runAt</th>
+                  <th className={`p-2`}>userId</th>
+                  <th className={`p-2`}>inputs</th>
+                </tr>
+              </thead>
               <tbody>
                 {scheduledRuns.map((scheduledRun) => (
                   <Fragment key={scheduledRun.id}>
