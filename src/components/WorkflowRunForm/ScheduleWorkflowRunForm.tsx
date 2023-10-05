@@ -97,7 +97,7 @@ const ScheduleWorkflowRunForm = ({
                         <div key={key}>
                           <label
                             htmlFor={key}
-                            className="block text-base text-sm text-gray-500"
+                            className="block text-base text-gray-500"
                           >
                             {data?.description ? data.description : key}
                           </label>
