@@ -46,7 +46,7 @@ const ScheduleWorkflowRunForm = ({
 
   return (
     <div className="flex-grow flex-col items-center">
-      <div className="rounded border border-gray-200 bg-white shadow-xl">
+      <div className="rounded border border-gray-100 bg-white shadow-xl">
         <h2 className="bg-gray-200 p-2 text-xl font-bold uppercase">
           Schedule Run
         </h2>
@@ -57,7 +57,7 @@ const ScheduleWorkflowRunForm = ({
               <div>
                 <div className="p-2">
                   <label
-                    className="block text-base font-semibold text-gray-600"
+                    className="block font-semibold text-gray-500"
                     htmlFor="datetime"
                   >
                     Execute at
@@ -97,7 +97,7 @@ const ScheduleWorkflowRunForm = ({
                         <div key={key}>
                           <label
                             htmlFor={key}
-                            className="block text-base font-semibold text-gray-600"
+                            className="block text-base  text-gray-500"
                           >
                             {data?.description ? data.description : key}
                           </label>
@@ -118,6 +118,9 @@ const ScheduleWorkflowRunForm = ({
                           {isTextInput ? (
                             <TextInput
                               id={key}
+                              className={
+                                "border-1 rounded border-gray-200 hover:border-gray-300"
+                              }
                               defaultValue={data.default ?? ""}
                               {...register(key, {
                                 required: data.required
@@ -140,7 +143,7 @@ const ScheduleWorkflowRunForm = ({
               <div className="self-end">
                 <div className="p-2">
                   <button
-                    className="mt-2 w-full rounded-lg bg-slate-200 p-2 text-xs  hover:bg-slate-300"
+                    className="mt-2 w-full rounded-lg bg-neutral-200 p-2 text-gray-500"
                     type="submit"
                   >
                     Schedule
