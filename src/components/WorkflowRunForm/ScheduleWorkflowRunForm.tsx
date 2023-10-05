@@ -97,7 +97,7 @@ const ScheduleWorkflowRunForm = ({
                         <div key={key}>
                           <label
                             htmlFor={key}
-                            className="block text-base  text-gray-500"
+                            className="block text-base text-sm text-gray-500"
                           >
                             {data?.description ? data.description : key}
                           </label>
@@ -118,9 +118,6 @@ const ScheduleWorkflowRunForm = ({
                           {isTextInput ? (
                             <TextInput
                               id={key}
-                              className={
-                                "border-1 rounded border-gray-200 hover:border-gray-300"
-                              }
                               defaultValue={data.default ?? ""}
                               {...register(key, {
                                 required: data.required

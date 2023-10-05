@@ -14,7 +14,7 @@ const DatetimeInput = React.forwardRef(
       <input
         ref={ref}
         type="datetime-local"
-        className="w-full rounded border p-1 text-base "
+        className="focus:shadow-outline w-full rounded border border-gray-200 p-1 text-base hover:border-gray-300 focus:border-gray-400 focus:ring-0"
         {...props}
       />
     );
