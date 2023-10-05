@@ -14,7 +14,7 @@ const TextInput = React.forwardRef(
       <input
         ref={ref}
         type="text"
-        className="focus:shadow-outline w-full rounded border-gray-200 p-1 text-base hover:border-gray-300 focus:border-gray-400 focus:ring-0"
+        className="focus:shadow-outline w-full rounded border-gray-200 p-3 text-base hover:border-gray-300 focus:border-gray-400 focus:ring-0"
         {...props}
       />
     );
