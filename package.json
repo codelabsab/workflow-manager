@@ -63,7 +63,7 @@
     "lint-staged": "^13.0.3",
     "lodash": "^4.17.21",
     "node-cron": "^3.0.2",
-    "postcss": "^8.4.30",
+    "postcss": "^8.4.31",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "prisma": "^5.3.1",
