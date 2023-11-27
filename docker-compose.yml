@@ -23,6 +23,7 @@ services:
     volumes:
       - db-shadow:/var/lib/mysql
   frontend:
+    image: workflow-manager-dev
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -38,11 +39,10 @@ services:
       NODE_ENV: development
       DATABASE_URL: "mysql://dev:password@main-mysql:3306/dev"
   cron:
+    image: workflow-manager-dev
+    pull_policy: never
     depends_on:
       - frontend
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
     command: yarn run-cron
     volumes:
       - .:/app
