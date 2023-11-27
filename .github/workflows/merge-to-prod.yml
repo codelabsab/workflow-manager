@@ -1,4 +1,4 @@
-name: Merge finflow main -> production
+name: Deploy to Production
 
 on:
   workflow_dispatch:
