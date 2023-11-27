@@ -1,0 +1,26 @@
+name: Merge finflow main -> production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  merge-to-prod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v4"
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Kami Gerami"
+          git config --global user.email "kami.gerami@gmail.com"
+
+      - name: Merge main -> production
+        run: |
+          git fetch origin main
+          git checkout vercel-production
+          git merge --no-ff main -m "Merge main into production"
+          git push origin vercel-production
