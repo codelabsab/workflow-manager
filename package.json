@@ -57,7 +57,7 @@
     "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "4.2.1",
-    "husky": "8.0.3",
+    "husky": "9.0.7",
     "lint-staged": "^15.2.0",
     "lodash": "^4.17.21",
     "madge": "^6.1.0",
