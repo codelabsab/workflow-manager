@@ -62,7 +62,7 @@
     "madge": "^6.1.0",
     "node-cron": "^3.0.3",
     "postcss": "^8.4.33",
-    "prettier": "^2.7.1",
+    "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "prisma": "^5.3.1",
     "tailwindcss": "^3.4.0",
