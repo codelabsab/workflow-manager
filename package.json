@@ -63,7 +63,7 @@
     "node-cron": "^3.0.3",
     "postcss": "^8.4.33",
     "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.13",
+    "prettier-plugin-tailwindcss": "^0.2.1",
     "prisma": "^5.3.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
