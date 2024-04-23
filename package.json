@@ -61,7 +61,7 @@
     "lodash": "^4.17.21",
     "madge": "^6.1.0",
     "node-cron": "^3.0.3",
-    "postcss": "^8.4.36",
+    "postcss": "^8.4.38",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "prisma": "^5.12.1",
