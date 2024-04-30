@@ -16,6 +16,10 @@ updates:
         - "*"
         update-types:
         - "patch"
+      prisma:
+        applies-to: version-updates
+        patterns:
+        - "@prisma*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
