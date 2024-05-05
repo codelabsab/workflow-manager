@@ -41,7 +41,7 @@
     "react-use": "^17.5.0",
     "superjson": "2.2.1",
     "yaml": "^2.4.2",
-    "zod": "^3.22.4"
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.0",
