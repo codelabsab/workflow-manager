@@ -1,8 +1,14 @@
 # Workflow Manager
 
+ :warning: **This project isn't being actively maintained.** 
+ 
+  If you're interested in helping out maintaining, please write [in this discussion](https://github.com/codelabsab/workflow-manager/discussions/233)**
+
 Hello there! 👋
 
-Thank you for taking the time to check out this project. Looking to contribute? Great! Please read the [contribution guidelines](docs/CONTRIBUTING.md) first.
+Thank you for taking the time to check out this project. 
+
+Looking to contribute? Great! Please read the [contribution guidelines](docs/CONTRIBUTING.md) first.
 
 Do you use github actions? Maybe you use it to run workflows that should do something at a specific date and time.
 
