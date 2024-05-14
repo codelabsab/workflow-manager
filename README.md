@@ -2,7 +2,7 @@
 
  :warning: **This project isn't being actively maintained.** 
  
-  If you're interested in helping out maintaining, please write [in this discussion](https://github.com/codelabsab/workflow-manager/discussions/233)**
+  If you're interested in helping out maintaining, please write [in this discussion](https://github.com/codelabsab/workflow-manager/discussions/233)
 
 Hello there! 👋
 
